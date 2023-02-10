@@ -12,8 +12,15 @@
 
 .form {
   width: 100%;
+}
+
+.bottomBlock{
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
 
   button {
-    margin-top: 10px;
+    margin-right: 10px;
+    height: max-content;
   }
 }

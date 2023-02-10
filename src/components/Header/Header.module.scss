@@ -11,6 +11,8 @@
 }
 
 .logo {
+  margin: auto 0;
+  height: max-content;
   background-color: black;
   color: #fff;
   font-weight: 700;
@@ -27,11 +29,29 @@
 }
 
 .buttons {
+  display: flex;
+  align-items: center;
+
   button {
-    margin-left: 10px;
+    margin-right: 10px;
   }
 
   a {
     text-decoration: none;
+  }
+
+  .profilBox {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+
+    p {
+      margin-left: 10px;
+    }
+
+    &:hover {
+      box-shadow: 1px 1px 3px 1px grey;
+    }
   }
 }
