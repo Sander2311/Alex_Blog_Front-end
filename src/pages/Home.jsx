@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 
 import { Post } from '../components/Post';
 import { TagsBlock } from '../components/TagsBlock';
-import { CommentsBlock } from '../components/CommentsBlock';
+import { CommentsBlock } from '../components/Comments/CommentsBlock';
 import { fetchPosts, fetchTags, fetchPopularPosts, fetchPostsByTag, fetchComents } from '../redux/slices/posts';
 import { useParams } from 'react-router-dom';
 
@@ -57,7 +57,7 @@ export const Home = () => {
         <Tab label="New" onClick={sortPostsByNewness} />
         <Tab label="Popular" onClick={sortPostsByPopular} />
         {inTagPage ? (
-        <Tab label={`#${name}`} />
+          <Tab label={`#${name}`} />
         ) : ''}
       </Tabs>
       <Grid container spacing={4}>
@@ -81,7 +81,7 @@ export const Home = () => {
         </Grid>
         <Grid xs={4} item>
           <TagsBlock items={tags.items} isLoading={isTagsLoading} />
-          <CommentsBlock items={coments.items} isLoading={isComentsLoading} />
+          <CommentsBlock items={coments.items} isLoading={isComentsLoading} isHomePage={true} />
         </Grid>
       </Grid>
     </>

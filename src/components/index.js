@@ -1,5 +1,5 @@
 export * from "./TagsBlock";
-export * from "./CommentsBlock";
+export * from "./Comments/CommentsBlock";
 export * from "./Post";
 export * from "./AddComment";
 export * from "./SideBlock";

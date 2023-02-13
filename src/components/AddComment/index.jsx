@@ -8,9 +8,9 @@ import Button from "@mui/material/Button";
 import axios from "../../axios";
 
 
-export const Index = ({ postId, status, changeStatus }) => {
+export const Index = ({ id, comentStatus, setComentStatus, isEditing = false, setIsEditing, commentText }) => {
   const { avatarUrl } = useSelector(state => state.auth.data);
-  const [text, setText] = React.useState('');
+  const [text, setText] = React.useState(isEditing ? commentText : '');
 
   const onSubmit = async () => {
     try {
@@ -18,10 +18,13 @@ export const Index = ({ postId, status, changeStatus }) => {
         text,
       };
 
-      await axios.post(`/coment/${postId}`, fields);
+      isEditing
+        ? await axios.patch(`/comment/${id}`, fields)
+        : await axios.post(`/comment/${id}`, fields);
 
       setText('');
-      changeStatus(!status);
+      setIsEditing(false);
+      setComentStatus(!comentStatus);
 
     } catch (err) {
       console.warn(err);
@@ -47,7 +50,7 @@ export const Index = ({ postId, status, changeStatus }) => {
             onChange={e => setText(e.target.value)}
           />
           <div className={styles.bottomBlock}>
-            <Button variant="contained" onClick={onSubmit}>Send</Button>
+            <Button variant="contained" onClick={onSubmit}>{isEditing ? 'Edit' : 'Send'}</Button>
             <p>{`Length ${text.length} / 50`}</p>
           </div>
         </div>

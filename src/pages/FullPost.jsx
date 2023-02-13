@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import { Post } from "../components/Post";
 import { Index } from "../components/AddComment";
-import { CommentsBlock } from "../components/CommentsBlock";
+import { CommentsBlock } from "../components/Comments/CommentsBlock";
 
 
 import axios from "../axios";
@@ -27,7 +27,7 @@ export const FullPost = () => {
       console.warn(err);
       alert('Cannot get post')
     });
-   }, [comentStatus]);
+  }, [comentStatus]);
 
   if (isLoading) {
     return <Post isLoading={isLoading} isFullPost />
@@ -48,14 +48,15 @@ export const FullPost = () => {
       >
         <ReactMarkdown children={data.text} />
       </Post>
-      <CommentsBlock items={data.coments} isLoading={isLoading}>
-      {isAuth ? (
-         <>
-          <Index postId={id} status={comentStatus} changeStatus={setComentStatus}/>
-         </>
-         ) : (
-          ""
-         ) }
+      <CommentsBlock items={data.coments} isLoading={isLoading} postId={data._id} comentStatus={comentStatus} setComentStatus={setComentStatus}>
+        {isAuth ? (
+          <>
+            <Index postId={id} comentStatus={comentStatus} setComentStatus={setComentStatus} />
+          </>
+        ) : (
+          <>
+          </>
+        )}
       </CommentsBlock>
     </>
   );
