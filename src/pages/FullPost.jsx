@@ -51,7 +51,7 @@ export const FullPost = () => {
       <CommentsBlock items={data.coments} isLoading={isLoading} postId={data._id} comentStatus={comentStatus} setComentStatus={setComentStatus}>
         {isAuth ? (
           <>
-            <Index postId={id} comentStatus={comentStatus} setComentStatus={setComentStatus} />
+            <Index id={id} comentStatus={comentStatus} setComentStatus={setComentStatus} />
           </>
         ) : (
           <>

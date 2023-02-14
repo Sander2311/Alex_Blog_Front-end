@@ -17,13 +17,13 @@ export const Index = ({ id, comentStatus, setComentStatus, isEditing = false, se
       const fields = {
         text,
       };
-
+      console.log(id);
       isEditing
         ? await axios.patch(`/comment/${id}`, fields)
         : await axios.post(`/comment/${id}`, fields);
 
       setText('');
-      setIsEditing(false);
+      if(isEditing) setIsEditing(false);
       setComentStatus(!comentStatus);
 
     } catch (err) {

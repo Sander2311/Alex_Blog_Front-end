@@ -14,8 +14,6 @@ export const Header = () => {
   const isAuth = useSelector(selectIsAuth);
 
 
-
-
   const onClickLogout = () => {
     if (window.confirm('Are you sure you want to logout?')) {
       dispatch(logout());
@@ -39,12 +37,14 @@ export const Header = () => {
                 <Button onClick={onClickLogout} variant="contained" color="error">
                   Log out
                 </Button>
-                <div className={styles.profilBox}>
-                  <Avatar
-                    src={profil.avatarUrl}
-                  />
-                  <p>{profil.fullName}</p>
-                </div>
+                <Link to="/user-info">
+                  <div className={styles.profilBox}>
+                    <Avatar
+                      src={profil.avatarUrl}
+                    />
+                    <p>{profil.fullName}</p>
+                  </div>
+                </Link>
               </>
             ) : (
               <>

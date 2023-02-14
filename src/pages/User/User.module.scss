@@ -1,0 +1,15 @@
+.user{
+    display: flex;
+    justify-content: center;
+
+    .userInfo{
+        width: max-content;
+        padding: 0 30px;
+        
+        
+        div{
+            font-size: 25px;
+        }
+    }
+    
+}

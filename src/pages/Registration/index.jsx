@@ -14,12 +14,14 @@ import styles from './Login.module.scss';
 
 export const Registration = () => {
   const isAuth = useSelector(selectIsAuth);
+  const [avatarUrl, setAvatarUrl] = React.useState('');
   const dispatch = useDispatch();
   const { register, handleSubmit, formState: { errors, isValid } } = useForm({
     defaultValues: {
-      fullName: 'Max Smett',
-      email: 'max@test.com',
-      password: '123456',
+      fullName: '',
+      email: '',
+      password: '',
+      avatarUrl: '',
     },
     mode: 'onChange',
   });
@@ -44,9 +46,22 @@ export const Registration = () => {
         Create account
       </Typography>
       <div className={styles.avatar}>
-        <Avatar sx={{ width: 100, height: 100 }} />
+        <Avatar
+          className={styles.avatar_item}
+          sx={{ width: 100, height: 100 }}
+          src={avatarUrl ? avatarUrl : ''}
+        />
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <TextField
+          type="url"
+          {...register('avatarUrl')}
+          className={styles.field}
+          label="Avatar url"
+          value={avatarUrl}
+          onChange={e => setAvatarUrl(e.target.value)}
+          placeholder="https://..."
+          fullWidth />
         <TextField
           error={Boolean(errors.fullName?.message)}
           helperText={errors.fullName?.message}
@@ -60,7 +75,7 @@ export const Registration = () => {
           type="email"
           {...register('email', { required: 'Enter email' })}
           className={styles.field}
-          label="E-Mail" 
+          label="E-Mail"
           fullWidth />
         <TextField
           error={Boolean(errors.password?.message)}
@@ -68,7 +83,7 @@ export const Registration = () => {
           type="password"
           {...register('password', { required: 'Enter password' })}
           className={styles.field}
-          label="Password" 
+          label="Password"
           fullWidth />
         <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>
           Register
