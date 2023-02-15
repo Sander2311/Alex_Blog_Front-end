@@ -1,15 +1,26 @@
-.user{
-    display: flex;
-    justify-content: center;
-
-    .userInfo{
-        width: max-content;
-        padding: 0 30px;
-        
-        
-        div{
-            font-size: 25px;
-        }
-    }
-    
+h1{
+    margin: 0;
 }
+
+.user{
+    .avatar{
+        margin: 0 auto;
+    }
+
+    .fullName{
+        text-align: center;
+        margin: 0;
+    }
+}
+
+.editForm{
+
+    .avatar_item{
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+    .field{
+        margin-bottom: 10px;
+    }
+}
+    

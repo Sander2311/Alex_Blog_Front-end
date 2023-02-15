@@ -37,7 +37,7 @@ export const Header = () => {
                 <Button onClick={onClickLogout} variant="contained" color="error">
                   Log out
                 </Button>
-                <Link to="/user-info">
+                <Link to={`/user-info/${profil._id}`}>
                   <div className={styles.profilBox}>
                     <Avatar
                       src={profil.avatarUrl}

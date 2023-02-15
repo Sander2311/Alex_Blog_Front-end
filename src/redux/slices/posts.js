@@ -26,6 +26,11 @@ export const fetchComents = createAsyncThunk('posts/fetchComents', async () => {
     return data;
 });
 
+export const fetchPostsByUser = createAsyncThunk('posts/fetchPostsByUser', async (id) => {
+    const { data } = await axios.get(`/posts-by-user/${id}`);
+    return data;
+});
+
 export const fetchRemovePost = createAsyncThunk('posts/fetchRemovePost', async (id) => {
      axios.delete(`/posts/${id}`);
 });
@@ -117,6 +122,20 @@ const postsSlice = createSlice({
         [fetchComents.rejected]: (state) => {
             state.coments.items = [];
             state.coments.status = 'error';
+        },
+
+
+        [fetchPostsByUser.pending]: (state) => {
+            state.posts.items = [];
+            state.posts.status = 'loading';
+        },
+        [fetchPostsByUser.fulfilled]: (state, action) => {
+            state.posts.items = action.payload;
+            state.posts.status = 'loaded';
+        },
+        [fetchPostsByUser.rejected]: (state) => {
+            state.posts.items = [];
+            state.posts.status = 'error';
         },
 
 
